@@ -22,6 +22,10 @@ import urllib.request
 
 SCHOLAR_ID = "CY_RlkAAAAAJ"
 OPENALEX_AUTHOR_ID = "A5001128668"
+# OpenAlex 把部分论文拆到了另一个同名实体，该实体还混有化学/环境论文，
+# 因此对其逐篇按 "作者名含 Fan 且单位为 UESTC" 过滤。
+OPENALEX_EXTRA_AUTHOR_IDS = ("A5112368784",)
+OPENALEX_UESTC_IDS = ("I150229711", "I4210164150")
 MIN_PAPERS = 10
 USER_AGENT = "MSB-lab-website/1.0 (mailto:fmrifanys@uestc.edu.cn)"
 
@@ -33,6 +37,9 @@ NAME_VARIANTS = {
     "yun-shuang fan",
     "fan yunshuang",
     "fan yun-shuang",
+    "fan yunshuang",
+    "范云霜",
+    "樊云霜",
 }
 
 
@@ -64,41 +71,71 @@ def fmt_authors(names, cap=8):
     return ", ".join(names)
 
 
-def fetch_openalex():
-    author = http_json("https://api.openalex.org/authors/" + OPENALEX_AUTHOR_ID)
+def work_to_pub(w):
+    authorships = w.get("authorships") or []
+    names = [((a.get("author") or {}).get("display_name") or "") for a in authorships]
+    loc = w.get("primary_location") or {}
+    source = loc.get("source") or {}
+    link = w.get("doi") or loc.get("landing_page_url") or w.get("id") or ""
+    return {
+        "title": (w.get("title") or "").strip(),
+        "authors": fmt_authors(names),
+        "venue": (source.get("display_name") or "").strip(),
+        "year": w.get("publication_year"),
+        "citations": int(w.get("cited_by_count") or 0),
+        "link": link,
+    }
 
-    pubs = []
-    seen = set()
+
+def fetch_works_by_author(author_id):
+    """All works of an OpenAlex author id (cursor paging)."""
+    works = []
     cursor = "*"
     while cursor:
-        url = ("https://api.openalex.org/works?filter=author.id:" + OPENALEX_AUTHOR_ID +
+        url = ("https://api.openalex.org/works?filter=author.id:" + author_id +
                "&per-page=200&sort=publication_year:desc&cursor=" + urllib.parse.quote(cursor))
         data = http_json(url)
         results = data.get("results") or []
         if not results:
             break
-        for w in results:
-            authorships = w.get("authorships") or []
-            names = [((a.get("author") or {}).get("display_name") or "") for a in authorships]
-            # safety: keep only works where a known name variant appears
-            if not any(normalize_name(n) in NAME_VARIANTS for n in names):
-                continue
-            loc = w.get("primary_location") or {}
-            source = loc.get("source") or {}
-            link = w.get("doi") or loc.get("landing_page_url") or w.get("id") or ""
-            key = (link or (w.get("title") or "")).lower()
-            if key in seen:
-                continue
-            seen.add(key)
-            pubs.append({
-                "title": (w.get("title") or "").strip(),
-                "authors": fmt_authors(names),
-                "venue": (source.get("display_name") or "").strip(),
-                "year": w.get("publication_year"),
-                "citations": int(w.get("cited_by_count") or 0),
-                "link": link,
-            })
+        works.extend(results)
         cursor = (data.get("meta") or {}).get("next_cursor")
+    return works
+
+
+def fetch_openalex():
+    author = http_json("https://api.openalex.org/authors/" + OPENALEX_AUTHOR_ID)
+
+    works = fetch_works_by_author(OPENALEX_AUTHOR_ID)
+
+    # Merge in works mis-assigned to other "Yunshuang Fan" entities, keeping
+    # only entries where an author name contains "fan" and an affiliation is UESTC.
+    for extra_id in OPENALEX_EXTRA_AUTHOR_IDS:
+        for w in fetch_works_by_author(extra_id):
+            ok_name = any("fan" in normalize_name(((a.get("author") or {}).get("display_name") or ""))
+                          for a in (w.get("authorships") or []))
+            ok_inst = any(
+                any((inst.get("id") or "").rstrip("/").split("/")[-1] in OPENALEX_UESTC_IDS
+                    for inst in (a.get("institutions") or []))
+                for a in (w.get("authorships") or [])
+            )
+            if ok_name and ok_inst:
+                works.append(w)
+
+    pubs = []
+    seen = set()
+    for w in works:
+        authorships = w.get("authorships") or []
+        names = [((a.get("author") or {}).get("display_name") or "") for a in authorships]
+        # safety for the main entity: keep only works with a known name variant
+        if not any(normalize_name(n) in NAME_VARIANTS for n in names):
+            continue
+        pub = work_to_pub(w)
+        key = (pub["link"] or pub["title"]).lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        pubs.append(pub)
 
     stats = author.get("summary_stats") or {}
     profile = {
