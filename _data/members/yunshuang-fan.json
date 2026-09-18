@@ -1,0 +1,24 @@
+{
+  "id": "yunshuang-fan",
+  "name": "Yunshuang Fan",
+  "name_zh": "樊云霜",
+  "role": "pi",
+  "since": 0,
+  "title": "Distinguished Associate Professor, School of Life Science and Technology, UESTC",
+  "title_zh": "电子科技大学生命科学与技术学院 特聘副教授、硕士生导师",
+  "research": "Neuroimaging mechanisms and individualized diagnosis of schizophrenia; brain connectomics; machine learning",
+  "research_zh": "精神分裂症脑影像机制与个体化诊疗；脑连接组学；机器学习",
+  "photo": "assets/people/yunshuang-fan.jpg",
+  "email": "",
+  "links": {
+    "scholar": "https://scholar.google.com/citations?user=CY_RlkAAAAAJ&hl=en",
+    "github": "https://github.com/Yun-Shuang",
+    "gitlab": "",
+    "orcid": "",
+    "homepage": "https://www.life.uestc.edu.cn/sznr2.jsp?urltype=news.NewsContentUrl&wbtreeid=1223&wbnewsid=7107"
+  },
+  "bio": "PhD in Biomedical Engineering (UESTC, 2023). Member of the Key Laboratory for NeuroInformation, Ministry of Education, and Prof. Huafu Chen's brain imaging team. Selected for the Sichuan Postdoctoral Innovative Talent Support Program.",
+  "bio_zh": "生物医学工程博士（电子科技大学，2023）。神经信息教育部重点实验室、陈华富教授脑功能成像团队成员，入选四川省博士后创新人才支持项目（博新计划）。",
+  "destination": "",
+  "destination_zh": ""
+}

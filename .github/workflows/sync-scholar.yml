@@ -1,0 +1,37 @@
+name: Sync Google Scholar
+
+# 每周一 02:00 (UTC) 自动同步 Google Scholar 论文数据；
+# 也可在 Actions 页面手动 Run workflow 触发。
+on:
+  schedule:
+    - cron: "0 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install scholarly
+        run: pip install scholarly
+
+      # 抓取失败时脚本返回非零 → workflow 失败并邮件通知，
+      # 但不会覆盖旧的 publications.json（脚本内有保护逻辑）。
+      - name: Fetch publications from Google Scholar
+        run: python scripts/sync_scholar.py
+
+      - name: Commit updated publications.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): auto-sync publications from Google Scholar"
+          file_pattern: "_data/publications.json"

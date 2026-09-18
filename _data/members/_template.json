@@ -1,0 +1,36 @@
+{
+  "_comment_": "复制本文件并重命名为 <你的英文id>.json（小写字母+连字符，如 san-zhang.json），然后填写以下字段。不需要的字段留空字符串即可。详见 docs/成员自助维护指南.md",
+
+  "id": "san-zhang",
+  "name": "San Zhang",
+  "name_zh": "张三",
+
+  "_role_": "身份，四选一：pi（负责人）/ phd（博士生）/ master（硕士生）/ alumni（校友）",
+  "role": "master",
+  "since": 2025,
+
+  "research": "Multimodal MRI biomarkers of schizophrenia",
+  "research_zh": "精神分裂症多模态磁共振影像标志物",
+
+  "_photo_": "可选。把照片放到 assets/people/san-zhang.jpg（正方形、≤500KB），此处填 assets/people/san-zhang.jpg；留空则自动显示姓名首字母头像",
+  "photo": "",
+
+  "email": "",
+
+  "_links_": "可选，有则显示对应图标，没有就留空字符串",
+  "links": {
+    "scholar": "",
+    "github": "",
+    "gitlab": "",
+    "orcid": "",
+    "homepage": ""
+  },
+
+  "_bio_": "一句话简介，可选",
+  "bio": "",
+  "bio_zh": "",
+
+  "_alumni_only_": "仅校友填写：毕业去向",
+  "destination": "",
+  "destination_zh": ""
+}

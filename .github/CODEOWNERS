@@ -1,0 +1,4 @@
+# 成员数据目录的改动必须由管理员审批（GitHub 会自动向这些人请求 Review）。
+# TODO: 把下面的用户名替换/追加为实际管理员的 GitHub 用户名（空格分隔多个）。
+/_data/members/ @Yun-Shuang
+/assets/people/ @Yun-Shuang

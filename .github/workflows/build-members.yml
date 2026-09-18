@@ -1,0 +1,37 @@
+name: Build Members Data
+
+# 成员数据合并进 main 后，自动重新聚合 _data/members.json 并提交，
+# 网站随后由 deploy 工作流发布更新。
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_data/members/**"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate member files
+        run: python scripts/validate_members.py
+
+      - name: Aggregate members.json
+        run: python scripts/build_members.py
+
+      - name: Commit members.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): rebuild members.json"
+          file_pattern: "_data/members.json"

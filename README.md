@@ -1,50 +1,54 @@
-# Yun-Shuang.github.io
+# MSB — Mapping Schizophrenia Brain
 
-## Mapping Schizophrenia Brain Group
+Team website of the MSB group (PI: Dr. Yunshuang Fan), School of Life Science and Technology, UESTC.
+Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pages.
 
-### 个人简介
+**Live:** https://yun-shuang.github.io
 
-樊云霜 (Yunshuang Fan) 是电子科技大学生命科学与技术学院的特聘副教授，隶属于神经信息教育部重点实验室和陈华富教授脑功能成像研究团队。
+## 站点结构
 
-- **职位**: 特聘副教授 | 硕士生导师
-- **所属院校**: 电子科技大学 生命科学与技术学院
-- **所属平台**: 神经信息教育部重点实验室
-- **所属团队**: 陈华富教授脑功能成像研究团队
+```
+├── index.html              首页（Hero / 研究亮点 / 动态 / PI 简介）
+├── research/               研究方向
+├── people/                 团队成员（读取 _data/members.json 渲染）
+├── publications/           学术成果（读取 _data/publications.json，按年分组 + 站内分页）
+├── contact/                联系方式（邮箱 + 微信公众号二维码）
+├── _data/
+│   ├── members/            成员数据：每人一个 <id>.json（成员自助维护，PR 审批）
+│   │   └── _template.json  新成员模板
+│   ├── members.json        聚合产物（Actions 自动生成，请勿手改）
+│   └── publications.json   论文数据（Actions 每周自动同步 Google Scholar）
+├── assets/                 css / js / i18n 语言包 / 图片
+├── scripts/
+│   ├── sync_scholar.py     Google Scholar 抓取脚本
+│   ├── build_members.py    成员数据聚合脚本
+│   └── validate_members.py 成员数据校验脚本（PR 自动检查）
+└── .github/workflows/      deploy / sync-scholar / build-members / validate-members
+```
 
-### 研究方向
+## 自动化机制
 
-主要聚焦于利用先进的磁共振脑影像技术和人工智能/机器学习方法，探索神经精神疾病的脑机制与精准诊疗策略：
+| 工作流 | 触发 | 作用 |
+|---|---|---|
+| `deploy.yml` | push 到 main | 部署到 GitHub Pages |
+| `sync-scholar.yml` | 每周一 02:00 UTC / 手动 | 抓取 Scholar 论文 → 更新 `_data/publications.json`；失败时保留旧数据并告警 |
+| `validate-members.yml` | 成员数据 PR | 自动校验 JSON 格式与必填字段 |
+| `build-members.yml` | 成员数据合并进 main | 重新聚合 `members.json` 并自动提交 |
 
-- 神经精神疾病脑影像机制
-- 脑网络连接异常分析
-- 精神分裂症影像学病理研究
-- 小脑-纹状体-皮层网络的脑灰质病变研究
+## 成员信息自助维护
 
-### 学术背景
+成员在 GitHub 网页上修改自己的 `_data/members/<id>.json` 并提 Pull Request，
+管理员（CODEOWNERS）审批合并后自动上线。**详细图文流程见 [docs/成员自助维护指南.md](docs/成员自助维护指南.md)。**
 
-- 2023年获得电子科技大学博士学位
-- 入选四川省博士后创新人才支持项目（博新计划）
-- 博士论文主题："精神分裂症脑连接异常的影像学研究"
-- 以第一作者或参与作者在神经病学、脑影像领域期刊发表多篇SCI论文
+## 本地预览
 
-### 网站结构
+```bash
+python -m http.server 8000
+# 打开 http://localhost:8000
+```
 
-本网站包含以下主要部分：
+## 待办（占位待替换）
 
-- **HOME** - 主页及个人简介
-- **ABOUT** - 详细个人信息和履历
-- **RESEARCH** - 研究方向和项目介绍
-- **MEMBERS** - 团队成员介绍
-- **PHILOSOPHY** - 研究理念
-- **PUBLICATIONS** - 发表论文列表
-- **ENIGMA** - ENIGMA项目相关信息
-
-### 联系方式
-
-- **邮箱**: [请填写邮箱地址]
-- **地址**: 四川省成都市高新区（西区）西源大道2006号 电子科技大学生命科学与技术学院
-
-### 版权信息
-
-© 2025 Yunshuang Fan. All rights reserved.
-ff
+- [ ] `.github/CODEOWNERS` 追加其他管理员的 GitHub 用户名
+- [ ] 成员的 `research`/`since` 目前为占位值，请成员按 [指南](docs/成员自助维护指南.md) 自助更新；照片暂未提供，上传后自动显示
+- [ ] 徐雨停（校友）的毕业去向 `destination` 待补充

@@ -1,0 +1,27 @@
+name: Validate Member Data
+
+# 成员信息 PR 的自动检查：JSON 格式、必填字段、链接与照片路径。
+# 检查结果会显示在 PR 的 Checks 里，管理员确认通过后再合并。
+on:
+  pull_request:
+    paths:
+      - "_data/members/**"
+      - "assets/people/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate member files
+        run: python scripts/validate_members.py

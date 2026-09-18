@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>People — MSB | UESTC</title>
+  <meta name="description" content="Members of the MSB (Mapping Schizophrenia Brain) group at UESTC.">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo-square.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page="people">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <h1 data-i18n="people.title"></h1>
+        <p data-i18n="people.lead"></p>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap" id="people-root">
+        <h2 class="block-title" data-i18n="people.pi"></h2>
+        <div id="pi-slot"></div>
+
+        <h2 class="block-title" data-i18n="people.phd"></h2>
+        <div class="people-grid" id="phd-slot"></div>
+
+        <h2 class="block-title" data-i18n="people.master"></h2>
+        <div class="people-grid" id="master-slot"></div>
+
+        <h2 class="block-title" data-i18n="people.alumni"></h2>
+        <ul class="alumni-list" id="alumni-slot"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/people.js"></script>
+  <script>MSBPeople.renderPage();</script>
+</body>
+</html>

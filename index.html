@@ -1,490 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Yunshuang Fan - Homepage</title>
-<meta name="description" content="Yunshuang Fan - Associate Professor at University of Electronic Science and Technology of China, specializing in neuroimaging and brain connectivity research">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="#">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  color: #333;
-  background-color: #ffffff;
-}
-
-/* Fixed Navigation Bar */
-.fixed-nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 60px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.menu {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-items {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-
-.menu-items li {
-  display: inline-block;
-}
-
-.menu-items a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  font-size: 15px;
-}
-
-.menu-items a:hover {
-  color: #666;
-}
-
-.show, .hide {
-  display: none;
-}
-
-/* Hero Section with Background Image */
-.hero-content {
-  position: relative;
-  background: #f0f0f0;
-  min-height: 900px;
-  margin-top: 60px;
-}
-
-/* Main Content */
-.main-content {
-  padding: 40px 20px 60px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Section Styling */
-section {
-  margin-bottom: 50px;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin-bottom: 40px;
-  color: #222;
-  font-weight: 300;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-  color: #222;
-  font-weight: 300;
-  text-align: center;
-}
-
-h3 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: 300;
-}
-
-p {
-  margin-bottom: 25px;
-  font-size: 1.05em;
-  color: #444;
-  line-height: 1.8;
-}
-
-strong {
-  font-weight: 500;
-  color: #222;
-}
-
-em {
-  font-style: italic;
-}
-
-/* Vision Section */
-#vision {
-  background-color: #f9f9f9;
-  padding: 40px;
-  border-radius: 12px;
-  margin-bottom: 40px;
-}
-
-/* Research Image Link */
-.research-link {
-  text-align: center;
-  margin: 50px 0;
-}
-
-.research-link img {
-  max-width: 100%;
-  height: 400px;
-  background: #f0f0f0;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.research-link img:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
-}
-
-/* Funders Section */
-#funders {
-  margin-top: 60px;
-  padding: 50px 0;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-}
-
-#funders h2 {
-  margin-bottom: 40px;
-}
-
-.funders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 0 40px;
-}
-
-.funder-card {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.funder-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-}
-
-.funder-logo {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.funder-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  background: #e0e0e0;
-}
-
-.funder-card h3 {
-  font-size: 1.3em;
-  margin-bottom: 15px;
-  color: #333;
-  text-align: center;
-}
-
-.funder-card p {
-  font-size: 0.95em;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 0;
-}
-
-/* Footer */
-footer {
-  background-color: #f5f5f5;
-  padding: 30px 20px;
-  text-align: center;
-  margin-top: 80px;
-  border-top: 1px solid #e0e0e0;
-}
-
-.copyright {
-  margin-bottom: 15px;
-  color: #666;
-}
-
-.copyright p {
-  margin-bottom: 10px;
-  font-size: 0.95em;
-}
-
-.copyright a {
-  color: #666;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.copyright a:hover {
-  color: #333;
-  text-decoration: underline;
-}
-
-.footerLinks a {
-  color: #666;
-  text-decoration: none;
-}
-
-.footerLinks a:hover {
-  color: #333;
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media only screen and (max-width: 1024px) {
-  .hero-content {
-    min-height: 700px;
-  }
-
-  .funders-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  /* Mobile Menu */
-  .menu {
-    position: relative;
-    justify-content: flex-start;
-  }
-
-  .menu-items {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px 0;
-    gap: 0;
-  }
-
-  .menu-items li {
-    text-align: center;
-    padding: 12px 0;
-  }
-
-  .show, .hide {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #333;
-    cursor: pointer;
-  }
-
-  .show::before {
-    content: "☰";
-  }
-
-  .hide::before {
-    content: "✕";
-  }
-
-  .hide {
-    display: none;
-  }
-
-  #menu:target .show {
-    display: none;
-  }
-
-  #menu:target .hide,
-  #menu:target .menu-items {
-    display: flex;
-  }
-
-  .hero-content {
-    min-height: 500px;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  #vision {
-    padding: 30px 25px;
-  }
-
-  .funders-grid {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-  }
-
-  #funders {
-    padding: 40px 0;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .hero-content {
-    background: #f0f0f0;
-    min-height: 300px;
-  }
-
-  .main-content {
-    padding: 30px 15px;
-  }
-
-  h1 {
-    font-size: 1.8em;
-  }
-
-  h2 {
-    font-size: 1.6em;
-  }
-
-  p {
-    font-size: 1em;
-  }
-
-  #vision {
-    padding: 25px 20px;
-  }
-
-  .funder-card {
-    padding: 25px 20px;
-  }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSB — Mapping Schizophrenia Brain | UESTC</title>
+  <meta name="description" content="The MSB (Mapping Schizophrenia Brain) group at UESTC studies the neural mechanisms of schizophrenia with multimodal MRI, connectomics and machine learning. Led by Dr. Yunshuang Fan.">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo-square.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body data-page="home">
+  <div id="site-header"></div>
 
-<nav class="fixed-nav-bar">
-  <div id="menu" class="menu">
-    <a class="show" href="#menu"></a>
-    <a class="hide" href="#hidemenu"></a>
-    <ul class="menu-items">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/about/">ABOUT</a></li>
-      <li><a href="/researchs/">RESEARCH</a></li>
-      <li><a href="/members/">MEMBERS</a></li>
-      <li><a href="/philosophy/">PHILOSOPHY</a></li>
-      <li><a href="/publications/">PUBLICATIONS</a></li>
-      <li><a href="/enigma/">ENIGMA</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero-content">
-  <div class="description" style="max-width: 1200px; margin: 0 auto; padding: 80px 40px; text-align: center;">
-    <h3 style="font-size: 2.8em; margin-bottom: 20px; color: #222;">樊云霜 (Yunshuang Fan)</h3>
-    <p class="summary2" style="font-size: 1.3em; color: #555; margin-bottom: 15px;">特聘副教授 | 硕士生导师</p>
-    <p class="summary2" style="font-size: 1.1em; color: #666;">电子科技大学 生命科学与技术学院</p>
-    <p class="summary2" style="font-size: 1.1em; color: #666;">神经信息教育部重点实验室</p>
-  </div>
-</section>
-
-<!-- Main Content -->
-<div class="main-content">
-  <div class="container">
-    <section id="about">
-      <h1>欢迎来到我的主页</h1>
-
-      <section id="vision">
-        <p>我是一位电子科技大学生命科学与技术学院的<strong>特聘副教授</strong>，隶属于<strong>神经信息教育部重点实验室</strong>和<strong>陈华富教授脑功能成像研究团队</strong>。</p>
-        
-        <p>我于2023年获得电子科技大学博士学位，随后入选<strong>四川省博士后创新人才支持项目（博新计划）</strong>，现任特聘副教授。我的研究主要聚焦于利用先进的磁共振脑影像技术和人工智能/机器学习方法，探索神经精神疾病的脑机制与精准诊疗策略。</p>
-        
-        <p>在博士期间，我的研究主题为"精神分裂症脑连接异常的影像学研究"，重点关注小脑-纹状体-皮层网络的脑灰质病变和精神疾病脑结构异常等课题。目前，我以第一作者或参与作者在神经病学、脑影像领域期刊发表多篇SCI论文。</p>
-      </section>
-
-      <div class="research-link">
-        <a href="/researchs/">
-          <img src="#" alt="研究方向可视化">
-        </a>
-        <p style="text-align: center; margin-top: 15px; color: #666;"><a href="/researchs/" style="color: #0066cc; text-decoration: none;">了解更多研究详情 →</a></p>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-kicker" data-i18n="home.kicker"></div>
+        <h1 data-i18n="home.title"></h1>
+        <p data-i18n="home.lead"></p>
       </div>
     </section>
 
-    <section id="funders">
-      <h2>所属团队与平台</h2>
-
-      <div class="funders-grid">
-        <div class="funder-card">
-          <div class="funder-logo">
-            <img src="#" alt="UESTC Logo">
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-title" data-i18n="home.hl.title"></h2>
+        <div class="section-sub"></div>
+        <div class="hl-grid">
+          <div class="hl-item">
+            <h3><span class="hl-num">01</span><span data-i18n="home.hl.1.t"></span></h3>
+            <p data-i18n="home.hl.1.p"></p>
           </div>
-          <h3>电子科技大学</h3>
-          <p>生命科学与技术学院<br>国家"双一流"建设高校</p>
-        </div>
-
-        <div class="funder-card">
-          <div class="funder-logo">
-            <img src="#" alt="Key Lab Logo">
+          <div class="hl-item">
+            <h3><span class="hl-num">02</span><span data-i18n="home.hl.2.t"></span></h3>
+            <p data-i18n="home.hl.2.p"></p>
           </div>
-          <h3>神经信息教育部重点实验室</h3>
-          <p>专注于神经科学与信息科学的交叉研究<br>国家级科研平台</p>
-        </div>
-
-        <div class="funder-card">
-          <div class="funder-logo">
-            <img src="#" alt="Research Team Logo">
+          <div class="hl-item">
+            <h3><span class="hl-num">03</span><span data-i18n="home.hl.3.t"></span></h3>
+            <p data-i18n="home.hl.3.p"></p>
           </div>
-          <h3>脑功能成像研究团队</h3>
-          <p>陈华富教授领衔<br>发表SCI论文300+篇</p>
         </div>
       </div>
     </section>
-  </div>
-</div>
 
-<footer>
-  <div class="copyright">
-    <p>© 2025 Yunshuang Fan. All rights reserved.</p>
-    <a href="/about/">About</a> |
-    <a href="mailto:[请填写邮箱]">Contact</a>
-  </div>
-  <div class="footerLinks">
-    <a href="#">免责声明</a>
-  </div>
-</footer>
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-title" data-i18n="home.news.title"></h2>
+        <div class="section-sub"></div>
+        <ul class="news-list">
+          <li><span class="news-date" data-i18n="home.news.1.d"></span><span data-i18n="home.news.1.t"></span></li>
+          <li><span class="news-date" data-i18n="home.news.2.d"></span><span data-i18n="home.news.2.t"></span></li>
+          <li><span class="news-date" data-i18n="home.news.3.d"></span><span data-i18n="home.news.3.t"></span></li>
+        </ul>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-title" data-i18n="home.pi.title"></h2>
+        <div class="section-sub"></div>
+        <div id="home-pi"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/people.js"></script>
+  <script>MSBPeople.renderPI(document.getElementById("home-pi"));</script>
 </body>
 </html>
