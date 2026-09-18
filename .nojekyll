@@ -1,0 +1,3 @@
+This file disables Jekyll processing on GitHub Pages so that directories
+starting with an underscore (e.g. _data/) are published as-is.
+Do not delete.
