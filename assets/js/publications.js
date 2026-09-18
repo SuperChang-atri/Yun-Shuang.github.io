@@ -21,7 +21,9 @@
       stat(p.hindex != null ? p.hindex : "—", t("publications.hindex")) +
       stat(pubs.length, t("publications.count"));
     var up = document.getElementById("pub-updated");
-    up.textContent = t("publications.updated") + ": " + ((data && data.updated) || "—");
+    var stamp = (data && data.updated) || "—";
+    if (data && data.source) stamp += " · " + data.source;
+    up.textContent = t("publications.updated") + ": " + stamp;
 
     function stat(num, lbl) {
       return '<div class="pub-stat"><div class="num">' + esc(num) + '</div><div class="lbl">' + esc(lbl) + "</div></div>";

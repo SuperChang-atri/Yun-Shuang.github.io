@@ -1,7 +1,7 @@
-name: Sync Google Scholar
+name: Sync Publications
 
-# 每周一 02:00 (UTC) 自动同步 Google Scholar 论文数据；
-# 也可在 Actions 页面手动 Run workflow 触发。
+# 每周一 02:00 (UTC) 自动同步论文数据（OpenAlex，开放学术数据库，
+# 无需密钥且可从 GitHub 机房访问）；也可在 Actions 页面手动触发。
 on:
   schedule:
     - cron: "0 2 * * 1"
@@ -22,16 +22,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install scholarly
-        run: pip install scholarly
-
+      # 仅用 Python 标准库，无需安装第三方依赖。
       # 抓取失败时脚本返回非零 → workflow 失败并邮件通知，
       # 但不会覆盖旧的 publications.json（脚本内有保护逻辑）。
-      - name: Fetch publications from Google Scholar
-        run: python scripts/sync_scholar.py
+      - name: Fetch publications
+        run: python scripts/sync_publications.py
 
       - name: Commit updated publications.json
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(data): auto-sync publications from Google Scholar"
+          commit_message: "chore(data): auto-sync publications"
           file_pattern: "_data/publications.json"

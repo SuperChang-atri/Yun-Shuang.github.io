@@ -20,10 +20,10 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 │   └── publications.json   论文数据（Actions 每周自动同步 Google Scholar）
 ├── assets/                 css / js / i18n 语言包 / 图片
 ├── scripts/
-│   ├── sync_scholar.py     Google Scholar 抓取脚本
+│   ├── sync_publications.py  论文同步脚本（默认 OpenAlex；--source scholar 走本地 Google Scholar）
 │   ├── build_members.py    成员数据聚合脚本
 │   └── validate_members.py 成员数据校验脚本（PR 自动检查）
-└── .github/workflows/      deploy / sync-scholar / build-members / validate-members
+└── .github/workflows/      deploy / sync-publications / build-members / validate-members
 ```
 
 ## 自动化机制
@@ -31,9 +31,15 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 | 工作流 | 触发 | 作用 |
 |---|---|---|
 | `deploy.yml` | push 到 main | 部署到 GitHub Pages |
-| `sync-scholar.yml` | 每周一 02:00 UTC / 手动 | 抓取 Scholar 论文 → 更新 `_data/publications.json`；失败时保留旧数据并告警 |
+| `sync-publications.yml` | 每周一 02:00 UTC / 手动 | 从 OpenAlex 抓取论文 → 更新 `_data/publications.json`；失败时保留旧数据并告警 |
 | `validate-members.yml` | 成员数据 PR | 自动校验 JSON 格式与必填字段 |
 | `build-members.yml` | 成员数据合并进 main | 重新聚合 `members.json` 并自动提交 |
+
+> 为什么用 OpenAlex 而不是直接抓 Google Scholar？Google 会拦截 GitHub
+> Actions 的机房 IP（验证码），无法在云端稳定自动抓取。OpenAlex 是开放
+> 学术数据库（数据含引用数、h 指数、DOI 链接），云端可稳定访问。
+> 如需精确的 Scholar 数字，可在本地运行：
+> `pip install scholarly && python scripts/sync_publications.py --source scholar`
 
 ## 成员信息自助维护
 

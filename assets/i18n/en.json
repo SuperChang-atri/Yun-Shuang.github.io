@@ -50,7 +50,7 @@
   "people.now": "Now",
 
   "publications.title": "Publications",
-  "publications.lead": "Automatically synced weekly from Google Scholar. Click a title to view the record on Google Scholar.",
+  "publications.lead": "Automatically synced and refreshed every week. Click a title to open the paper.",
   "publications.citations": "Citations",
   "publications.hindex": "h-index",
   "publications.count": "Papers",

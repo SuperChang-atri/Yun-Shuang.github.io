@@ -50,7 +50,7 @@
   "people.now": "现就职于",
 
   "publications.title": "学术成果",
-  "publications.lead": "论文列表每周自动同步自 Google Scholar，点击标题可查看 Scholar 记录。",
+  "publications.lead": "论文列表每周自动同步刷新，点击标题可打开论文页面。",
   "publications.citations": "总引用",
   "publications.hindex": "h 指数",
   "publications.count": "论文数",
