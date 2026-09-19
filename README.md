@@ -8,7 +8,7 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 ## 站点结构
 
 ```
-├── index.html              首页（Hero / 研究亮点 / 动态 / PI 简介）
+├── index.html              首页（Hero / 团队合照滚动揭幕 / 研究亮点 / 动态 / PI 简介）
 ├── research/               研究方向
 ├── people/                 团队成员（读取 _data/members.json 渲染）
 ├── publications/           学术成果（读取 _data/publications.json，按年分组 + 站内分页）
@@ -17,7 +17,8 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 │   ├── members/            成员数据：每人一个 <id>.json（成员自助维护，PR 审批）
 │   │   └── _template.json  新成员模板
 │   ├── members.json        聚合产物（Actions 自动生成，请勿手改）
-│   └── publications.json   论文数据（Actions 每周自动同步 Google Scholar）
+│   ├── publications.json   论文数据（Actions 每周自动同步 OpenAlex）
+│   └── news.json           首页"最新动态"（加/删/改新闻只编辑这一个文件）
 ├── assets/                 css / js / i18n 语言包 / 图片
 ├── scripts/
 │   ├── sync_publications.py  论文同步脚本（默认 OpenAlex；--source scholar 走本地 Google Scholar）
@@ -25,6 +26,17 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 │   └── validate_members.py 成员数据校验脚本（PR 自动检查）
 └── .github/workflows/      deploy / sync-publications / build-members / validate-members
 ```
+
+## 内容维护速查
+
+| 想改什么 | 编辑哪个文件 | 说明 |
+|---|---|---|
+| 首页最新动态 | `_data/news.json` | 数组加/删条目即可；`text` 英文、`text_zh` 中文、`date` 显示日期 |
+| 研究方向文字 | `assets/i18n/zh.json` + `en.json` | `research.d1.t`/`research.d1.p` ~ `d4`，中英各改一份 |
+| 首页标题/简介等 | 同上两个语言包 | `home.*` 开头的键 |
+| 合照换新 | `assets/img/group-photo.jpg` | 同名覆盖即可（建议 ≤2000px 宽）；比例变了不用改代码 |
+| 成员信息 | `_data/members/<id>.json` | 见下方"成员信息自助维护" |
+| 联系邮箱 | `contact/index.html` + `assets/js/site.js` 页脚 | 两处同步改 |
 
 ## 自动化机制
 

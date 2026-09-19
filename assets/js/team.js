@@ -1,20 +1,21 @@
-/* Team photo reveal: expandable section with staggered fade-in */
+/* Team photo scroll-linked reveal (curtain opening from center) +
+   staggered member chips. Graceful fallback: full reveal without JS. */
 (function () {
   "use strict";
 
   var section = document.getElementById("team-section");
   if (!section) return;
 
-  var toggle = document.getElementById("team-toggle");
-  var reveal = document.getElementById("team-reveal");
-  var hint = document.getElementById("team-hint");
+  var wrap = section.querySelector(".team-photo-wrap");
   var chipsBox = document.getElementById("team-chips");
-  var isOpen = false;
   var members = null;
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var supportsClip = !!(window.CSS && CSS.supports && CSS.supports("clip-path", "inset(0 10% 0 10%)"));
 
   function esc(s) { return window.MSB.esc(s); }
   function lang() { return window.MSB.lang(); }
-  function t(k) { return window.MSB.t(k); }
   function pick(m, key) {
     var v = lang() === "zh" ? (m[key + "_zh"] || m[key]) : m[key];
     return v || "";
@@ -22,16 +23,6 @@
   function initials(name) {
     return (name || "?").split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase();
   }
-
-  function setOpen(open) {
-    isOpen = open;
-    reveal.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    reveal.setAttribute("aria-hidden", open ? "false" : "true");
-    if (hint) hint.textContent = open ? t("home.team.hintClose") : t("home.team.hint");
-  }
-
-  toggle.addEventListener("click", function () { setOpen(!isOpen); });
 
   function renderChips() {
     if (!members || !chipsBox) return;
@@ -46,12 +37,50 @@
   window.MSB.fetchJSON("/_data/members.json").then(function (data) {
     members = data.members || [];
     renderChips();
-  }).catch(function () { /* chips are decorative; ignore */ });
+  }).catch(function () { /* chips are decorative */ });
 
-  document.addEventListener("langchange", function () {
-    setOpen(isOpen);
-    renderChips();
-  });
+  document.addEventListener("langchange", renderChips);
 
-  setOpen(false);
+  if (reduceMotion || !supportsClip) return; // photo stays fully visible
+
+  section.classList.add("team-scroll");
+
+  var revealed = false;
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var rect = wrap.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+
+    // p: 0 when photo top is at 92% of viewport height, 1 when at 38%
+    var start = vh * 0.92;
+    var end = vh * 0.38;
+    var p = (start - rect.top) / (start - end);
+    if (p < 0) p = 0;
+    if (p > 1) p = 1;
+
+    var side = ((1 - p) * 50).toFixed(2); // curtain opening from the center
+    wrap.style.clipPath = "inset(0 " + side + "% 0 " + side + "%)";
+    wrap.style.transform = "scale(" + (1 + (1 - p) * 0.05).toFixed(4) + ")";
+
+    if (p > 0.82 && !revealed) {
+      revealed = true;
+      section.classList.add("is-revealed");
+    } else if (p < 0.5 && revealed) {
+      revealed = false;
+      section.classList.remove("is-revealed");
+    }
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  update();
 })();

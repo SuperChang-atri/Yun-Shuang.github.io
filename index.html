@@ -22,25 +22,15 @@
 
     <section class="section" id="team-section">
       <div class="wrap">
-        <div class="team-head">
-          <div>
-            <h2 class="section-title" data-i18n="home.team.title"></h2>
-            <p class="section-sub team-sub" data-i18n="home.team.lead"></p>
-          </div>
-          <div class="team-head-right">
-            <span class="team-hint" id="team-hint"></span>
-            <button class="team-toggle" id="team-toggle" aria-expanded="false" aria-controls="team-reveal" aria-label="Toggle group photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-        </div>
+        <h2 class="section-title" data-i18n="home.team.title"></h2>
+        <p class="section-sub team-sub" data-i18n="home.team.lead"></p>
 
-        <div class="team-reveal" id="team-reveal" aria-hidden="true">
+        <div class="team-reveal" id="team-reveal">
           <div class="team-reveal-inner">
             <figure class="team-photo-wrap">
               <!-- 已接入真实合照：assets/img/group-photo.jpg（2000px 宽，403KB） -->
-              <img id="team-photo" src="/assets/img/group-photo.jpg"
-                   alt="MSB group photo" data-i18n-alt="home.team.alt" loading="lazy">
+              <img id="team-photo" src="/assets/img/group-photo.jpg" width="2000" height="1333"
+                   alt="MSB group photo" data-i18n-alt="home.team.alt">
             </figure>
             <div class="team-caption">
               <span data-i18n="home.team.caption"></span>
@@ -77,11 +67,7 @@
       <div class="wrap">
         <h2 class="section-title" data-i18n="home.news.title"></h2>
         <div class="section-sub"></div>
-        <ul class="news-list">
-          <li><span class="news-date" data-i18n="home.news.1.d"></span><span data-i18n="home.news.1.t"></span></li>
-          <li><span class="news-date" data-i18n="home.news.2.d"></span><span data-i18n="home.news.2.t"></span></li>
-          <li><span class="news-date" data-i18n="home.news.3.d"></span><span data-i18n="home.news.3.t"></span></li>
-        </ul>
+        <ul class="news-list" id="news-list"></ul>
       </div>
     </section>
 
@@ -98,6 +84,7 @@
   <script src="/assets/js/site.js"></script>
   <script src="/assets/js/people.js"></script>
   <script src="/assets/js/team.js"></script>
+  <script src="/assets/js/news.js"></script>
   <script>MSBPeople.renderPI(document.getElementById("home-pi"));</script>
 </body>
 </html>
