@@ -28,6 +28,9 @@
     document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
       el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph")));
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      el.setAttribute("alt", t(el.getAttribute("data-i18n-alt")));
+    });
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
     var btn = document.getElementById("lang-toggle");
     if (btn) btn.textContent = lang === "en" ? "中文" : "EN";

@@ -20,6 +20,39 @@
       </div>
     </section>
 
+    <section class="section" id="team-section">
+      <div class="wrap">
+        <div class="team-head">
+          <div>
+            <h2 class="section-title" data-i18n="home.team.title"></h2>
+            <p class="section-sub team-sub" data-i18n="home.team.lead"></p>
+          </div>
+          <div class="team-head-right">
+            <span class="team-hint" id="team-hint"></span>
+            <button class="team-toggle" id="team-toggle" aria-expanded="false" aria-controls="team-reveal" aria-label="Toggle group photo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="team-reveal" id="team-reveal" aria-hidden="true">
+          <div class="team-reveal-inner">
+            <figure class="team-photo-wrap">
+              <!-- TODO: 替换为真实合照（建议 ≤2000px 宽、≤800KB、3:2 比例），
+                   如 assets/img/group-photo.jpg，改下面这行 src 即可 -->
+              <img id="team-photo" src="/assets/img/group-photo-placeholder.svg"
+                   alt="MSB group photo" data-i18n-alt="home.team.alt" loading="lazy">
+            </figure>
+            <div class="team-caption">
+              <span data-i18n="home.team.caption"></span>
+              <span data-i18n="home.team.location"></span>
+            </div>
+            <div class="team-chips" id="team-chips"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrap">
         <h2 class="section-title" data-i18n="home.hl.title"></h2>
@@ -65,6 +98,7 @@
   <div id="site-footer"></div>
   <script src="/assets/js/site.js"></script>
   <script src="/assets/js/people.js"></script>
+  <script src="/assets/js/team.js"></script>
   <script>MSBPeople.renderPI(document.getElementById("home-pi"));</script>
 </body>
 </html>

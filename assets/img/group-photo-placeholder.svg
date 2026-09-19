@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Group photo placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2f6fa"/>
+      <stop offset="1" stop-color="#dfe8f2"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d3deea"/>
+      <stop offset="1" stop-color="#e8eef6"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.65" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#9db3ca" stop-opacity="0.18"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect y="720" width="1600" height="280" fill="url(#floor)"/>
+
+  <!-- back row -->
+  <g opacity="0.34" fill="#1a4f8a">
+    <circle cx="330" cy="380" r="58"/><rect x="252" y="452" width="156" height="260" rx="70"/>
+    <circle cx="640" cy="355" r="58"/><rect x="562" y="427" width="156" height="285" rx="70"/>
+    <circle cx="950" cy="370" r="58"/><rect x="872" y="442" width="156" height="270" rx="70"/>
+    <circle cx="1270" cy="385" r="58"/><rect x="1192" y="457" width="156" height="255" rx="70"/>
+  </g>
+
+  <!-- front row -->
+  <g opacity="0.5" fill="#1a4f8a">
+    <circle cx="215" cy="500" r="66"/><rect x="126" y="582" width="178" height="230" rx="80"/>
+    <circle cx="490" cy="478" r="66"/><rect x="401" y="560" width="178" height="252" rx="80"/>
+    <circle cx="795" cy="500" r="66"/><rect x="706" y="582" width="178" height="230" rx="80"/>
+    <circle cx="1105" cy="482" r="66"/><rect x="1016" y="564" width="178" height="248" rx="80"/>
+    <circle cx="1390" cy="505" r="66"/><rect x="1301" y="587" width="178" height="225" rx="80"/>
+  </g>
+
+  <rect width="1600" height="1000" fill="url(#vignette)"/>
+
+  <g text-anchor="middle" font-family="Helvetica, Arial, sans-serif">
+    <text x="800" y="930" font-size="30" fill="#7c93ab" letter-spacing="6">GROUP PHOTO PLACEHOLDER</text>
+    <text x="800" y="968" font-size="19" fill="#9db3ca" letter-spacing="2">MSB · Mapping Schizophrenia Brain · UESTC</text>
+  </g>
+</svg>

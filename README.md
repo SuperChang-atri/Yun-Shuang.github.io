@@ -55,6 +55,7 @@ python -m http.server 8000
 
 ## 待办（占位待替换）
 
+- [ ] 首页"团队风采"合照为占位图：将真实照片放到 `assets/img/group-photo.jpg`（建议 ≤2000px 宽、≤800KB、3:2 比例），并修改 `index.html` 中 `#team-photo` 的 `src`
 - [ ] `.github/CODEOWNERS` 追加其他管理员的 GitHub 用户名
 - [ ] 成员的 `research`/`since` 目前为占位值，请成员按 [指南](docs/成员自助维护指南.md) 自助更新；照片暂未提供，上传后自动显示
 - [ ] 徐雨停（校友）的毕业去向 `destination` 待补充
