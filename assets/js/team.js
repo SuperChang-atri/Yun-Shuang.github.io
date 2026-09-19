@@ -1,5 +1,6 @@
-/* Team photo scroll-linked reveal (curtain opening from center) +
-   staggered member chips. Graceful fallback: full reveal without JS. */
+/* Team photo scroll-linked reveal: a page-colored curtain slides up as you
+   scroll, uncovering the photo bottom-to-top (no clipping, no distortion).
+   Chips stagger in afterwards. Graceful fallback: full reveal without JS. */
 (function () {
   "use strict";
 
@@ -12,7 +13,6 @@
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var supportsClip = !!(window.CSS && CSS.supports && CSS.supports("clip-path", "inset(0 10% 0 10%)"));
 
   function esc(s) { return window.MSB.esc(s); }
   function lang() { return window.MSB.lang(); }
@@ -41,8 +41,13 @@
 
   document.addEventListener("langchange", renderChips);
 
-  if (reduceMotion || !supportsClip) return; // photo stays fully visible
+  if (reduceMotion) return; // photo stays fully visible
 
+  // Curtain overlay (created by JS only, so no-JS users see the photo directly)
+  var curtain = document.createElement("div");
+  curtain.className = "team-curtain";
+  curtain.setAttribute("aria-hidden", "true");
+  wrap.appendChild(curtain);
   section.classList.add("team-scroll");
 
   var revealed = false;
@@ -60,9 +65,7 @@
     if (p < 0) p = 0;
     if (p > 1) p = 1;
 
-    var side = ((1 - p) * 50).toFixed(2); // curtain opening from the center
-    wrap.style.clipPath = "inset(0 " + side + "% 0 " + side + "%)";
-    wrap.style.transform = "scale(" + (1 + (1 - p) * 0.05).toFixed(4) + ")";
+    curtain.style.transform = "translateY(" + (-p * 100).toFixed(2) + "%)";
 
     if (p > 0.82 && !revealed) {
       revealed = true;

@@ -431,8 +431,16 @@ h2.block-title:first-of-type { border-top: none; padding-top: 0; margin-top: 0; 
   flex-shrink: 0;
 }
 
-/* JS scroll mode: curtain opening from the center, driven by scroll progress */
-.team-scroll .team-photo-wrap { will-change: clip-path, transform; }
+/* JS scroll mode: page-colored curtain slides up, uncovering the photo */
+.team-curtain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--bg);
+  border-bottom: 2px solid var(--accent);
+  will-change: transform;
+  pointer-events: none;
+}
 
 .team-scroll .team-caption { opacity: 0; transform: translateY(12px); }
 
