@@ -1,0 +1,35 @@
+name: Build Gallery Data
+
+# 相册文件夹有变动（上传/删除照片）时，自动重建 _data/gallery.json 并提交，
+# 网站随后由 deploy 工作流发布更新。新增照片会自动追加条目（说明文字留空，
+# 可事后在 gallery.json 里补），删除照片会自动移除对应条目。
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/img/gallery/**"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild gallery.json
+        run: python scripts/build_gallery.py
+
+      - name: Commit gallery.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): rebuild gallery.json"
+          file_pattern: "_data/gallery.json"

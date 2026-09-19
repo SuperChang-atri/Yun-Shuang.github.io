@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "src": "assets/img/gallery/activity-01.jpg",
+      "caption": "Team building, Jan 2026",
+      "caption_zh": "团建活动 · 2026-01",
+      "date": "2026-01"
+    },
+    {
+      "src": "assets/img/gallery/activity-02.jpg",
+      "caption": "Group gathering",
+      "caption_zh": "小组合影",
+      "date": ""
+    }
+  ]
+}

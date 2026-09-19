@@ -18,23 +18,29 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 │   │   └── _template.json  新成员模板
 │   ├── members.json        聚合产物（Actions 自动生成，请勿手改）
 │   ├── publications.json   论文数据（Actions 每周自动同步 OpenAlex）
+│   ├── gallery.json        活动相册清单（Actions 根据 assets/img/gallery/ 自动同步）
 │   └── news.json           首页"最新动态"（加/删/改新闻只编辑这一个文件）
 ├── assets/                 css / js / i18n 语言包 / 图片
 ├── scripts/
 │   ├── sync_publications.py  论文同步脚本（默认 OpenAlex；--source scholar 走本地 Google Scholar）
 │   ├── build_members.py    成员数据聚合脚本
+│   ├── build_gallery.py    相册清单聚合脚本
 │   └── validate_members.py 成员数据校验脚本（PR 自动检查）
-└── .github/workflows/      deploy / sync-publications / build-members / validate-members
+└── .github/workflows/      deploy / sync-publications / build-members / build-gallery / validate-members
 ```
 
 ## 内容维护速查
+
+> 详细版维护手册（含相册管理、权限、同步机制、常见问题）：
+> **[docs/网站维护指南.md](docs/网站维护指南.md)**；成员改个人信息看 [docs/成员自助维护指南.md](docs/成员自助维护指南.md)。
 
 | 想改什么 | 编辑哪个文件 | 说明 |
 |---|---|---|
 | 首页最新动态 | `_data/news.json` | 数组加/删条目即可；`text` 英文、`text_zh` 中文、`date` 显示日期 |
 | 研究方向文字 | `assets/i18n/zh.json` + `en.json` | `research.d1.t`/`research.d1.p` ~ `d4`，中英各改一份 |
 | 首页标题/简介等 | 同上两个语言包 | `home.*` 开头的键 |
-| 合照换新 | `assets/img/group-photo.jpg` | 同名覆盖即可（建议 ≤2000px 宽）；比例变了不用改代码 |
+| 首页大合照 | `assets/img/group-photo.jpg` | 同名覆盖即可（建议 ≤2000px 宽） |
+| 活动相册 | `assets/img/gallery/` 文件夹 | 增/删照片只动文件夹，`_data/gallery.json` 由 Actions 自动同步；说明文字在 gallery.json 里改 |
 | 成员信息 | `_data/members/<id>.json` | 见下方"成员信息自助维护" |
 | 联系邮箱 | `contact/index.html` + `assets/js/site.js` 页脚 | 两处同步改 |
 
