@@ -40,7 +40,8 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 | 研究方向文字 | `assets/i18n/zh.json` + `en.json` | `research.d1.t`/`research.d1.p` ~ `d4`，中英各改一份 |
 | 首页标题/简介等 | 同上两个语言包 | `home.*` 开头的键 |
 | 首页大合照 | `assets/img/group-photo.jpg` | 同名覆盖即可（建议 ≤2000px 宽） |
-| 活动相册 | `assets/img/gallery/` 文件夹 | 增/删照片只动文件夹，`_data/gallery.json` 由 Actions 自动同步；说明文字在 gallery.json 里改。照片自动出现在首页网格与成员页轮播 |
+| 活动相册 | `assets/img/gallery/` 文件夹 | 增/删照片只动文件夹，`_data/gallery.json` 由 Actions 自动同步；说明文字在 gallery.json 里改。照片自动显示在团队成员页轮播 |
+| 其它页面文案 | `assets/i18n/zh.json` + `en.json` | 键名前缀对应页面：`people.*`（成员页）、`publications.*`（成果页）、`contact.*`（联系页）、`gallery.title`（相册标题）、`nav.*`（导航） |
 | 成员信息 | `_data/members/<id>.json` | 见下方"成员信息自助维护" |
 | 联系邮箱 | `contact/index.html` + `assets/js/site.js` 页脚 | 两处同步改 |
 
