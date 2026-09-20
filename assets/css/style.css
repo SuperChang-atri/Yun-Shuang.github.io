@@ -500,6 +500,94 @@ h2.block-title:first-of-type { border-top: none; padding-top: 0; margin-top: 0; 
   .carousel-track { transition: none; }
 }
 
+/* ---------------- Member JSON generator ---------------- */
+.mform {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.mform .full { grid-column: 1 / -1; }
+
+.mfield label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.mfield input[type="text"],
+.mfield input[type="url"],
+.mfield input[type="email"],
+.mfield input[type="number"],
+.mfield select {
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--bg);
+}
+.mfield input:focus, .mfield select:focus { outline: none; border-color: var(--accent); }
+
+.mfield .hint { font-size: 12px; color: var(--text-3); margin-top: 5px; }
+
+.checkfield .check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-2);
+}
+.checkfield input { width: auto; }
+
+.mform-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.mbtn {
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.mbtn:hover { border-color: var(--accent); color: var(--accent); }
+.mbtn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.mbtn.primary:hover { background: #16437a; color: #fff; }
+
+.mj-status { font-size: 13px; color: var(--accent); }
+
+.mj-output {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  overflow: auto;
+  max-height: 420px;
+  font-family: Consolas, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.mj-steps { padding-left: 22px; font-size: 15px; color: var(--text-2); }
+.mj-steps li { padding: 6px 0; }
+
+@media (max-width: 800px) {
+  .mform { grid-template-columns: 1fr; }
+}
+
 /* ---------------- Responsive ---------------- */
 @media (max-width: 800px) {
   .menu-btn { display: block; }

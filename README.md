@@ -13,6 +13,7 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 ├── people/                 团队成员（读取 _data/members.json 渲染）
 ├── publications/           学术成果（读取 _data/publications.json，按年分组 + 站内分页）
 ├── contact/                联系方式（邮箱 + 微信公众号二维码）
+├── member-json/            成员信息生成器（在线填表 → 一键下载 json，免手写）
 ├── _data/
 │   ├── members/            成员数据：每人一个 <id>.json（成员自助维护，PR 审批）
 │   │   └── _template.json  新成员模板
@@ -63,7 +64,8 @@ Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pa
 ## 成员信息自助维护
 
 成员在 GitHub 网页上修改自己的 `_data/members/<id>.json` 并提 Pull Request，
-管理员（CODEOWNERS）审批合并后自动上线。**详细图文流程见 [docs/成员自助维护指南.md](docs/成员自助维护指南.md)。**
+管理员（CODEOWNERS）审批合并后自动上线。**推荐使用[成员信息生成器](https://yun-shuang.github.io/member-json/)在线填表生成 json**；
+详细图文流程见 [docs/成员自助维护指南.md](docs/成员自助维护指南.md)。
 
 ## 本地预览
 

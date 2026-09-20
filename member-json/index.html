@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Member Info Generator — MSB | UESTC</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logo-square.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page="member-json">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <h1 data-i18n="memberjson.title"></h1>
+        <p data-i18n="memberjson.lead"></p>
+      </div>
+    </section>
+
+    <section class="page-body">
+      <div class="wrap">
+        <form class="mform" id="member-form" autocomplete="off">
+          <div class="mfield">
+            <label data-i18n="memberjson.name"></label>
+            <input name="name" type="text" required>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.name_zh"></label>
+            <input name="name_zh" type="text" required>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.id"></label>
+            <input name="id" type="text" pattern="[a-z0-9-]+">
+            <div class="hint" data-i18n="memberjson.id.hint"></div>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.role"></label>
+            <select name="role">
+              <option value="phd" data-i18n="memberjson.role.phd"></option>
+              <option value="master" selected data-i18n="memberjson.role.master"></option>
+              <option value="alumni" data-i18n="memberjson.role.alumni"></option>
+            </select>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.since"></label>
+            <input name="since" type="number" min="2000" max="2035" step="1" required>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.email"></label>
+            <input name="email" type="email">
+          </div>
+          <div class="mfield full">
+            <label data-i18n="memberjson.research"></label>
+            <input name="research" type="text" required>
+          </div>
+          <div class="mfield full">
+            <label data-i18n="memberjson.research_zh"></label>
+            <input name="research_zh" type="text" required>
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.dest"></label>
+            <input name="destination" type="text">
+          </div>
+          <div class="mfield">
+            <label data-i18n="memberjson.dest_zh"></label>
+            <input name="destination_zh" type="text">
+          </div>
+          <div class="mfield">
+            <label>Google Scholar</label>
+            <input name="scholar" type="url" placeholder="https://scholar.google.com/citations?user=...">
+          </div>
+          <div class="mfield">
+            <label>GitHub</label>
+            <input name="github" type="url" placeholder="https://github.com/...">
+          </div>
+          <div class="mfield">
+            <label>GitLab</label>
+            <input name="gitlab" type="url" placeholder="https://gitlab.com/...">
+          </div>
+          <div class="mfield">
+            <label>ORCID</label>
+            <input name="orcid" type="url" placeholder="https://orcid.org/...">
+          </div>
+          <div class="mfield">
+            <label>Homepage</label>
+            <input name="homepage" type="url" placeholder="https://...">
+          </div>
+          <div class="mfield checkfield">
+            <label class="check"><input type="checkbox" name="photo"> <span data-i18n="memberjson.photo"></span></label>
+          </div>
+        </form>
+
+        <div class="mform-actions">
+          <button class="mbtn primary" id="mj-download" type="button" data-i18n="memberjson.gen"></button>
+          <button class="mbtn" id="mj-copy" type="button" data-i18n="memberjson.copy"></button>
+          <span class="mj-status" id="mj-status"></span>
+        </div>
+
+        <h2 class="block-title" data-i18n="memberjson.preview"></h2>
+        <pre class="mj-output" id="mj-output"></pre>
+
+        <h2 class="block-title" data-i18n="memberjson.steps.title"></h2>
+        <ol class="mj-steps">
+          <li data-i18n="memberjson.steps.1"></li>
+          <li data-i18n="memberjson.steps.2"></li>
+          <li data-i18n="memberjson.steps.3"></li>
+          <li data-i18n="memberjson.steps.4"></li>
+        </ol>
+        <p class="mt-24">
+          <a href="https://github.com/Yun-Shuang/Yun-Shuang.github.io/tree/main/_data/members" target="_blank" rel="noopener" data-i18n="memberjson.repo"></a>
+          ·
+          <a href="https://github.com/Yun-Shuang/Yun-Shuang.github.io/blob/main/docs/成员自助维护指南.md" target="_blank" rel="noopener" data-i18n="memberjson.guide"></a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/member-json.js"></script>
+</body>
+</html>
