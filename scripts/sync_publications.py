@@ -62,8 +62,13 @@ def http_json(url):
 # --------------------------------------------------------------------------
 # OpenAlex
 # --------------------------------------------------------------------------
+def clean_name(s):
+    # OpenAlex sometimes uses unicode hyphens (U+2010/U+2011) in names.
+    return (s or "").replace("\u2010", "-").replace("\u2011", "-")
+
+
 def fmt_authors(names, cap=8):
-    names = [n for n in names if n]
+    names = [clean_name(n) for n in names if n]
     if not names:
         return ""
     if len(names) > cap:
@@ -108,7 +113,7 @@ def fetch_openalex():
 
     works = fetch_works_by_author(OPENALEX_AUTHOR_ID)
 
-    # Merge in works mis-assigned to other "Yunshuang Fan" entities, keeping
+    # Merge in works mis-assigned to other "Yun-Shuang Fan" entities, keeping
     # only entries where an author name contains "fan" and an affiliation is UESTC.
     for extra_id in OPENALEX_EXTRA_AUTHOR_IDS:
         for w in fetch_works_by_author(extra_id):
@@ -139,7 +144,7 @@ def fetch_openalex():
 
     stats = author.get("summary_stats") or {}
     profile = {
-        "name": author.get("display_name", ""),
+        "name": clean_name(author.get("display_name", "")),
         "affiliation": "University of Electronic Science and Technology of China",
         "citedby": author.get("cited_by_count"),
         "hindex": stats.get("h_index"),

@@ -1,6 +1,6 @@
 # MSB — Mapping Schizophrenia Brain
 
-Team website of the MSB group (PI: Dr. Yunshuang Fan), School of Life Science and Technology, UESTC.
+Team website of the MSB group (PI: Dr. Yun-Shuang Fan), School of Life Science and Technology, UESTC.
 Built as a pure static site (HTML/CSS/JS, no build step) and hosted on GitHub Pages.
 
 **Live:** https://yun-shuang.github.io

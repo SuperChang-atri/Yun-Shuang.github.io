@@ -231,17 +231,7 @@ h2.block-title:first-of-type { border-top: none; padding-top: 0; margin-top: 0; 
 .member-links a:hover { color: var(--accent); }
 .member-links svg { width: 18px; height: 18px; }
 
-.alumni-list { list-style: none; }
-.alumni-list li {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-size: 15px;
-}
-.alumni-list .alumni-dest { color: var(--text-3); font-size: 13.5px; }
+.member-dest { font-size: 13px; color: var(--text-3); margin-top: 6px; }
 
 /* Publications */
 .pub-stats {

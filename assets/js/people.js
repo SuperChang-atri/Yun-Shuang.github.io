@@ -51,23 +51,28 @@
       links(m) + "</div></div>";
   }
 
+  var ROLE_LABELS = {
+    phd: ["PhD student", "博士生"],
+    master: ["Master student", "硕士生"],
+    alumni: ["Alumni", "毕业校友"]
+  };
+
   function memberCard(m) {
-    var role = m.role === "phd" ? "PhD student" : "Master student";
-    var since = m.since ? role + " · " + window.MSB.t("people.since") + " " + m.since : role;
-    if (lang() === "zh") {
-      since = (m.role === "phd" ? "博士生" : "硕士生") + (m.since ? " · " + m.since + " " + window.MSB.t("people.since") : "");
+    var pair = ROLE_LABELS[m.role] || ["", ""];
+    var role = lang() === "zh" ? pair[1] : pair[0];
+    var sincePart = "";
+    if (m.since) {
+      sincePart = lang() === "zh"
+        ? " · " + m.since + " " + window.MSB.t("people.since")
+        : " · " + window.MSB.t("people.since") + " " + m.since;
     }
+    var dest = lang() === "zh" ? (m.destination_zh || m.destination) : (m.destination || m.destination_zh);
     return '<div class="member-card">' + avatar(m) + '<div class="member-info">' +
       '<div class="member-name">' + esc(pick(m, "name")) + "</div>" +
-      '<div class="member-role">' + esc(since) + "</div>" +
+      '<div class="member-role">' + esc(role + sincePart) + "</div>" +
       '<div class="member-research">' + esc(pick(m, "research")) + "</div>" +
+      (dest ? '<div class="member-dest">' + esc(window.MSB.t("people.now") + ": " + dest) + "</div>" : "") +
       links(m) + "</div></div>";
-  }
-
-  function alumniItem(m) {
-    var dest = lang() === "zh" ? (m.destination_zh || m.destination) : m.destination;
-    return "<li><span><strong>" + esc(pick(m, "name")) + "</strong> · " + esc(pick(m, "research")) + "</span>" +
-      (dest ? '<span class="alumni-dest">' + window.MSB.t("people.now") + ": " + esc(dest) + "</span>" : "") + "</li>";
   }
 
   function byRole(members, role) {
@@ -87,7 +92,7 @@
     });
 
     var al = document.getElementById("alumni-slot");
-    if (al) al.innerHTML = byRole(members, "alumni").map(alumniItem).join("");
+    if (al) al.innerHTML = byRole(members, "alumni").map(memberCard).join("");
   }
 
   var cached = null;
