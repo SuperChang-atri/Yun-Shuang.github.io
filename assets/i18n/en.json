@@ -88,7 +88,7 @@
   "memberjson.research_zh": "Research direction (Chinese)",
   "memberjson.dest": "Destination after graduation (alumni only, optional, English)",
   "memberjson.dest_zh": "Destination after graduation (alumni only, optional, Chinese)",
-  "memberjson.photo": "I will also upload my photo as assets/people/<id>.jpg",
+  "memberjson.photo": "I will also upload my photo as assets/people/<id>.jpg (square, ≥400×400px, ≤300KB)",
   "memberjson.gen": "Download JSON",
   "memberjson.copy": "Copy JSON",
   "memberjson.preview": "Preview",

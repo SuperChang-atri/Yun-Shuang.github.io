@@ -88,7 +88,7 @@
   "memberjson.research_zh": "研究方向（中文）",
   "memberjson.dest": "毕业去向（仅校友填写，可选，英文）",
   "memberjson.dest_zh": "毕业去向（仅校友填写，可选，中文）",
-  "memberjson.photo": "我会同时上传照片，命名为 assets/people/<id>.jpg",
+  "memberjson.photo": "我会同时上传照片（正方形，边长 ≥400px，≤300KB），命名为 assets/people/<id>.jpg",
   "memberjson.gen": "下载 JSON 文件",
   "memberjson.copy": "复制 JSON",
   "memberjson.preview": "生成结果预览",
