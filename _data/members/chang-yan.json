@@ -1,0 +1,22 @@
+{
+  "id": "chang-yan",
+  "name": "chang Yan",
+  "name_zh": "闫畅",
+  "role": "master",
+  "since": 2025,
+  "research": "Multimodal Brain Imaging in Schizophrenia",
+  "research_zh": "精神分裂症多模态脑影像研究",
+  "photo": "assets/people/chang-yan.jpg",
+  "email": "1521746021@qq.com",
+  "links": {
+    "scholar": "",
+    "github": "https://github.com/SuperChang-atri",
+    "gitlab": "",
+    "orcid": "",
+    "homepage": ""
+  },
+  "bio": "",
+  "bio_zh": "",
+  "destination": "",
+  "destination_zh": ""
+}
